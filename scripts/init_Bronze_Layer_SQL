@@ -1,0 +1,10 @@
+
+drop database sqlwarehouse;
+
+create database sqlwarehouse;
+
+create schema bronze;
+
+CREATE SCHEMA silver;
+
+CREATE SCHEMA gold;
