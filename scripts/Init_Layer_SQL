@@ -8,3 +8,11 @@ create schema bronze;
 CREATE SCHEMA silver;
 
 CREATE SCHEMA gold;
+
+
+
+
+
+
+
+	
