@@ -1,0 +1,40 @@
+
+-- stored procedure
+DO $$
+Begin
+		Raise Notice '--------------------------';
+		Raise Notice 'Loading bronze layer';
+		Raise Notice '---------------------------'; 
+	
+		Raise Notice '==========================='; 
+		Raise notice 'loading account info table';
+		Raise Notice '==========================='; 
+	
+		raise notice '>> Truncating table :bronze.account_info ';
+		truncate table bronze.account_info;
+	
+		raise notice '>> inserting data :bronze.account_info ';
+	
+		COPY bronze.account_info from 'C:\Users\ACER\Desktop\ETL_SQL\Data\crm\accounts.csv' with 
+		(
+			FORMAT csv,
+			HEADER true,
+			DELIMITER ','
+		);
+		
+		
+		Raise Notice '==========================='; 
+		Raise notice 'loading product info table';
+	
+		raise notice '>> Truncating data :bronze.product_info ';
+		truncate table bronze.product_info;
+		
+		raise notice '>> inserting data :bronze.product_info ';
+		copy bronze.product_info from 'C:\Users\ACER\Desktop\ETL_SQL\Data\crm\products.csv'
+		with (
+			FORMAT csv,
+			header TRUE,
+			delimiter ','
+		);
+
+END $$;
