@@ -1,0 +1,27 @@
+
+drop table if exists bronze.account_info;
+
+	create table bronze.account_info(
+			account text,
+			sector text,
+			year_established int,
+			revenue float,
+			employees int,
+			office_location varchar(50) ,
+			subsidiary_of varchar(50)
+	);
+
+drop table if exists bronze.product_info;
+	
+	create table bronze.product_info(
+		product varchar(50),
+		series text,
+		sales_price float
+	);
+
+
+
+
+
+
+	
