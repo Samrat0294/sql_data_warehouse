@@ -1,0 +1,24 @@
+-- quality checks
+
+-- check for null or duplicate value
+-- Expectation : no result
+
+select id, count(*) from gold.e_sales_data
+	group by id having count(*) > 1 or id is null;
+
+	
+-- check for unwanted spaces -->
+-- Expectation : no result
+select customer_name from gold.e_sales_data
+where customer_name != Trim(customer_name);
+
+-- data standardization and consistency
+select DISTINCT status from gold.e_sales_data
+
+
+-- check for nulls or negative value
+-- Expectation : no result
+select quantity from gold.e_sales_data
+	where quantity < 0 or quantity is null
+
+select * from gold.e_sales_data;
