@@ -1,0 +1,72 @@
+-- Truncating table: Silver.e_sales_data
+Truncate table silver.e_sales_data;
+-- or
+drop table if exists silver.e_Sales_data;
+
+-- CREATE TABLE E_SALES_dATA
+create table silver.e_Sales_data(
+	id int ,
+	Customer_Name varchar(50),
+	Order_ID varchar(50),
+	Order_Date text,
+	Product text,
+	Category text,
+	Quantity text,
+	Price varchar(20),
+	Payment_Method varchar(50),
+	Status text,
+	Total text
+);
+
+-- Extract data from directly from local file via url
+copy silver.e_Sales_data from 'C:\Users\ACER\Desktop\ETL_SQL\Data\ecommerce_sales_data.csv' with
+(
+	header true,
+	format csv,
+	delimiter ','
+);
+
+-- -- modify or change data type of order_date
+-- Alter table silver.e_sales_data
+-- alter column Order_date
+-- TYPE DATE
+-- using
+-- (
+-- 	case
+-- 		when order_date ='abc' or order_date not like '%/%/%' then null
+-- 		else order_date
+-- 	end
+-- )::date;
+
+
+-- modify data type of quanitity
+alter table silver.e_sales_data 
+alter column quantity type int
+	using(
+		case 
+			when quantity = quantity then quantity
+		end
+	)::int
+
+-- modify data type of price
+alter table silver.e_sales_data 
+alter column price type float
+		using(
+			case 
+				when price = '' or price is null then null
+				else price::float
+			end
+		);
+
+-- modify data type of total
+alter table silver.e_sales_data
+alter column total type float
+	using(
+		case
+			when total = '' or total is null then null
+			else total::float
+		end
+	);
+
+
+select * from silver.e_sales_data
