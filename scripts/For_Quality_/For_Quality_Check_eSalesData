@@ -1,4 +1,18 @@
--- quality checks
+===============================================
+Quality checks
+==============================================
+Scripts Purpose:
+	This script performs various quality checks for data consistency, accuracy, and standardization across the 'gold' schema. It includes checks for:
+	- Null or duplicate primary keys.
+	- Unwanted spaces in string fields.
+	- Data standardization and consistency.
+	-Invalid data ranges and orders.
+	- Data consistency between related fields.
+
+Usage Notes:
+	- Run these checks after data loading gold layer.
+	- Investigate and resolve any discrepancies found during the checks.
+======================================================================================
 
 -- check for null or duplicate value
 -- Expectation : no result
