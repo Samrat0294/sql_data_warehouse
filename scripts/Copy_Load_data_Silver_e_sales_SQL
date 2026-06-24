@@ -69,4 +69,27 @@ alter column total type float
 	);
 
 
-select * from silver.e_sales_data
+-- update column of category
+update silver.e_sales_data
+set category = initcap(category);
+
+-- update quantity which include char like 4aa
+update silver.e_sales_data
+set quantity = REGEXP_REPLACE(quantity,'[^0-9]','','g') where quantity ~'(?!^-)[0-9]';
+
+-- update price which include char like abd, four hundred
+update silver.e_sales_data
+set price = null or price = REGEXP_REPLACE(replace(price,'four hundred','400'),'[^0-9]','','g') where price ~ '[^0.0-9]';
+
+-- update total negative value
+update silver.e_sales_data
+set total = REGEXP_REPLACE(total,'[^0.0-9]','','g') where total ~'[^0.0-9]';
+
+-- update the value of total ('1.023.288') to null
+update silver.e_sales_Data 
+set total = null where total = '1.023.288'
+
+
+select * from silver.e_sales_data;
+
+
