@@ -1,0 +1,15 @@
+drop table if exists gold.e_Sales_data;
+
+create table gold.e_Sales_data(
+	id int ,
+	Customer_Name varchar(50),
+	Order_ID varchar(50),
+	Order_Date date,
+	Product text,
+	Category text,
+	Quantity int,
+	Price float,
+	Payment_Method varchar(50),
+	Status text,
+	Total float
+);
