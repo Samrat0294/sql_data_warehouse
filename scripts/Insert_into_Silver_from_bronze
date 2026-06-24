@@ -1,0 +1,23 @@
+
+Insert into silver.sales_pipeline(
+	opportunity_id,
+	sales_agent,
+	product,
+	account,
+	deal_stage,
+	engage_date,
+	close_date,
+	close_value
+)
+select opportunity_id, 
+	trim(sales_agent) as sales_agent, 
+	product,account,
+	case	when deal_stage='Won' then 'winner'
+			when deal_stage = 'Lost' then 'looser'
+	else deal_stage
+	end  as deal_stage, 
+	engage_date,
+	close_date,
+	close_value
+from bronze.sales_pipeline where opportunity_id is not null;
+
